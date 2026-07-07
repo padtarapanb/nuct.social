@@ -32,7 +32,7 @@ export default function Activities() {
           <div className="badge mb-5">Activities</div>
           <h2 className="section-title">สิ่งที่เราทำร่วมกัน</h2>
           <p className="section-subtitle">
-            กิจกรรมหลากหลายรูปแบบตลอดปี ออกแบบมาให้ทุกคนได้เข้าร่วมตามจังหวะชีวิตของตัวเอง
+            ขับเคลื่อนชีวิตและพันธกิจไปด้วยกัน ผ่านกิจกรรมหลากหลายที่ลงตัวกับทุกจังหวะชีวิต
           </p>
         </div>
 
