@@ -35,6 +35,12 @@ const FIELDS = [
     type: "textarea",
   },
   {
+    key: "history_full_body",
+    label:
+      "ประวัติฉบับเต็ม (โชว์เมื่อกดปุ่ม \"อ่านประวัติเต็ม\" ใต้ประวัติย่อ — เว้นว่างไว้ถ้าไม่ต้องการให้มีปุ่มนี้)",
+    type: "textarea",
+  },
+  {
     key: "lineOAUrl",
     label: "ลิงก์ปุ่ม Join Club (LINE OA หรือฟอร์มสมัคร)",
     placeholder: "https://line.me/R/ti/p/@yourclub",
@@ -44,6 +50,12 @@ const FIELDS = [
     label:
       "ลิงก์ฝัง Google Calendar สำหรับเมนู Events (Google Calendar > ตั้งค่า > เลือกปฏิทิน > \"ผสานรวมปฏิทิน\" > คัดลอกลิงก์ในช่อง \"ลิงก์แบบฝัง\" เอามาแค่ URL ที่อยู่ใน src=\"...\" เท่านั้น ต้องขึ้นต้นด้วย https://calendar.google.com/ และต้องตั้งค่าปฏิทินเป็น \"สาธารณะ\" ก่อนด้วย ไม่งั้นจะฝังไม่ขึ้น)",
     placeholder: "https://calendar.google.com/calendar/embed?src=...",
+  },
+  {
+    key: "google_maps_embed_url",
+    label:
+      "ลิงก์ฝัง Google Maps สำหรับ Contact (เปิด Google Maps > ค้นหาสถานที่ > แชร์ > ฝังแผนที่ > คัดลอก HTML > เอามาแค่ URL ที่อยู่ใน src=\"...\" เท่านั้น ต้องขึ้นต้นด้วย https://www.google.com/maps/embed)",
+    placeholder: "https://www.google.com/maps/embed?pb=...",
   },
 ];
 
