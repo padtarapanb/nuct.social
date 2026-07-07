@@ -30,7 +30,7 @@ export default function Activities() {
       <div className="max-w-6xl mx-auto px-5 sm:px-8">
         <div ref={headRef} className="reveal max-w-xl mb-14">
           <div className="badge mb-5">Activities</div>
-          <h2 className="section-title">สิ่งที่เราทำร่วมกัน</h2>
+          <h2 className="section-title">โครงการและกิจกรรมสำคัญ</h2>
           <p className="section-subtitle">
             ขับเคลื่อนชีวิตและพันธกิจไปด้วยกัน ผ่านกิจกรรมหลากหลายที่ลงตัวกับทุกจังหวะชีวิต
           </p>
