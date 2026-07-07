@@ -1,4 +1,5 @@
-import { BookOpen } from "lucide-react";
+import { useState } from "react";
+import { BookOpen, ChevronDown } from "lucide-react";
 import { useContent } from "../../context/ContentContext";
 import { useReveal } from "../../hooks/useReveal";
 import { renderText } from "../../lib/renderText";
@@ -6,10 +7,11 @@ import ImageSlider from "./ImageSlider";
 
 export default function History() {
   const { content } = useContent();
-  const { history_title_line1, history_title_line2, history_body } = content.settings;
+  const { history_title_line1, history_title_line2, history_body, history_full_body } = content.settings;
   const historyImages = content.historyImages;
   const textRef = useReveal();
   const imgRef = useReveal();
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <section
@@ -29,6 +31,24 @@ export default function History() {
             {history_title_line2}
           </h2>
           <p className="section-subtitle rich-text" dangerouslySetInnerHTML={renderText(history_body)} />
+
+          {history_full_body && (
+            <>
+              {expanded && (
+                <p
+                  className="section-subtitle rich-text mt-4"
+                  dangerouslySetInnerHTML={renderText(history_full_body)}
+                />
+              )}
+              <button
+                onClick={() => setExpanded((v) => !v)}
+                className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-pine-800 hover:text-pine-900"
+              >
+                {expanded ? "ย่อประวัติ" : "อ่านประวัติเต็ม"}
+                <ChevronDown size={16} className={`transition-transform ${expanded ? "rotate-180" : ""}`} />
+              </button>
+            </>
+          )}
         </div>
 
         <div ref={imgRef} className="reveal order-1 lg:order-2 relative">
