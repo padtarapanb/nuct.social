@@ -129,39 +129,35 @@ ccase "galleryAlbums":
       description="จัดการอัลบั้มรูปภาพ โดยระบุโฟลเดอร์ใน Cloudinary เช่น NUCT Gallery/Baptism"
 
       fields={[
-        {
-          name: "title",
-          label: "ชื่ออัลบั้ม",
-          placeholder: "Baptism",
-        },
-
-        {
-          name: "slug",
-          label: "Slug",
-          placeholder: "baptism",
-        },
-
-        {
-          name: "folder",
-          label: "Cloudinary Folder",
-          placeholder: "NUCT Gallery/Baptism",
-          wide: true,
-        },
-
-        {
-          name: "description",
-          label: "รายละเอียด",
-          type: "textarea",
-          wide: true,
-        },
-
-        {
-          name: "is_active",
-          label: "เปิดใช้งาน",
-          type: "checkbox",
-          default: true,
-        },
-      ]}
+  {
+    name: "title",
+    label: "ชื่ออัลบั้ม",
+    placeholder: "Baptism",
+  },
+  {
+    name: "slug",
+    label: "Slug",
+    placeholder: "baptism",
+  },
+  {
+    name: "folder",
+    label: "Cloudinary Folder",
+    placeholder: "NUCT Gallery/Baptism",
+    wide: true,
+  },
+  {
+    name: "description",
+    label: "รายละเอียด",
+    type: "textarea",
+    wide: true,
+  },
+  {
+    name: "is_active",
+    label: "เปิดใช้งาน",
+    type: "checkbox",
+    default: true,
+  },
+]}
     />
   );
       case "team":
