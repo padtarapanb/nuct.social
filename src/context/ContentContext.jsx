@@ -30,7 +30,7 @@ const defaultContent = {
   activities: fallback.activities,
   upcomingEvents: fallback.upcomingEvents,
   socials: fallback.socials,
-  galleryCategories: fallback.galleryCategories,
+  galleryAlbums: [],
   team: fallback.team,
   testimonials: fallback.testimonials,
   faqs: fallback.faqs,
