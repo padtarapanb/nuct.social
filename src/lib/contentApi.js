@@ -1,14 +1,18 @@
 import { supabase, isSupabaseConfigured } from "./supabaseClient";
 
 // รายชื่อตารางทั้งหมดที่แอดมินแก้ไขได้ผ่านหน้าเว็บ
+
 export const TABLES = {
   activities: "activities",
   upcomingEvents: "upcoming_events",
   socials: "socials",
-  galleryCategories: "gallery_categories",
+
+  galleryAlbums: "gallery_albums",
+
   team: "team_members",
   testimonials: "testimonials",
   faqs: "faqs",
+
   aboutImages: "about_images",
   historyImages: "history_images",
 };
