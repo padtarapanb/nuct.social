@@ -100,6 +100,15 @@ function RowForm({ fields, values, onChange }) {
   );
 }
 
+function slugify(text = "") {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+}
+
 export default function ListEditor({ tableKey, title, description, fields }) {
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -132,19 +141,25 @@ export default function ListEditor({ tableKey, title, description, fields }) {
   }, [tableKey]);
 
   const handleAdd = async () => {
-    setAdding(true);
-    setError("");
-    try {
-      await createRow(tableKey, newRow);
-      setNewRow(emptyValues(fields));
-      await load();
-    } catch (err) {
-      console.error(err);
-      setError("เพิ่มข้อมูลไม่สำเร็จ: " + err.message);
-    } finally {
-      setAdding(false);
+  setAdding(true);
+  setError("");
+
+  try {
+
+    const row = { ...newRow };
+
+    if (tableKey === "galleryAlbums") {
+      row.slug = slugify(row.title);
+      row.folder = `NUCT Gallery/${row.title}`;
     }
-  };
+
+    await createRow(tableKey, row);
+
+    setNewRow(emptyValues(fields));
+
+    await load();
+
+  } catch (err) {
 
   const handleSave = async (id) => {
     setSavingId(id);
