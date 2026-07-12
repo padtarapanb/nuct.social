@@ -46,6 +46,16 @@ create table if not exists gallery_categories (
   created_at timestamptz default now()
 );
 
+create table if not exists gallery_albums (
+  id uuid primary key default gen_random_uuid(),
+  name text default '',
+  slug text default '',
+  folder text default '',
+  images jsonb default '[]'::jsonb,
+  sort_order int default 0,
+  created_at timestamptz default now()
+);
+
 create table if not exists team_members (
   id uuid primary key default gen_random_uuid(),
   role text default '',
@@ -110,6 +120,7 @@ alter table activities enable row level security;
 alter table upcoming_events enable row level security;
 alter table socials enable row level security;
 alter table gallery_categories enable row level security;
+alter table gallery_albums enable row level security;
 alter table team_members enable row level security;
 alter table testimonials enable row level security;
 alter table faqs enable row level security;
@@ -122,7 +133,7 @@ do $$
 declare
   t text;
 begin
-  foreach t in array array['activities','upcoming_events','socials','gallery_categories','team_members','testimonials','faqs','about_images','history_images','shepherding_groups','site_settings']
+  foreach t in array array['activities','upcoming_events','socials','gallery_categories','gallery_albums','team_members','testimonials','faqs','about_images','history_images','shepherding_groups','site_settings']
   loop
     execute format('drop policy if exists "public read %1$s" on %1$s', t);
     execute format('create policy "public read %1$s" on %1$s for select using (true)', t);
