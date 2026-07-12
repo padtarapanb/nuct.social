@@ -65,18 +65,22 @@ export function ContentProvider({ children }) {
       const data = await fetchAllContent();
       // ถ้ายังไม่มีข้อมูลในตารางไหนเลย (ยังไม่ได้ seed) ให้ใช้ค่าเริ่มต้นแทนช่องนั้น ๆ
       const merged = {
-        activities: data.activities?.length ? data.activities : fallback.activities,
-        upcomingEvents: data.upcomingEvents?.length ? data.upcomingEvents : fallback.upcomingEvents,
-        socials: data.socials?.length ? data.socials : fallback.socials,
-        galleryCategories: data.galleryCategories?.length ? data.galleryCategories : fallback.galleryCategories,
-        team: data.team?.length ? data.team : fallback.team,
-        testimonials: data.testimonials?.length ? data.testimonials : fallback.testimonials,
-        faqs: data.faqs?.length ? data.faqs : fallback.faqs,
-        aboutImages: (data.aboutImages || []).filter((img) => img.is_active !== false),
-        historyImages: (data.historyImages || []).filter((img) => img.is_active !== false),
-        shepherdingGroups: data.shepherdingGroups || [],
-        settings: { ...defaultSettings, ...data.settings },
-      };
+  activities: data.activities?.length ? data.activities : fallback.activities,
+  upcomingEvents: data.upcomingEvents?.length ? data.upcomingEvents : fallback.upcomingEvents,
+  socials: data.socials?.length ? data.socials : fallback.socials,
+
+  galleryAlbums: data.galleryAlbums || [],
+
+  team: data.team?.length ? data.team : fallback.team,
+  testimonials: data.testimonials?.length ? data.testimonials : fallback.testimonials,
+  faqs: data.faqs?.length ? data.faqs : fallback.faqs,
+
+  aboutImages: (data.aboutImages || []).filter((img) => img.is_active !== false),
+  historyImages: (data.historyImages || []).filter((img) => img.is_active !== false),
+
+  shepherdingGroups: data.shepherdingGroups || [],
+  settings: { ...defaultSettings, ...data.settings },
+};
       setContent(merged);
       setUsingFallback(false);
       setError(null);
