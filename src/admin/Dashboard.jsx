@@ -121,7 +121,7 @@ export default function Dashboard() {
             ]}
           />
         );
-case "galleryCategories":
+ccase "galleryAlbums":
   return (
     <ListEditor
       tableKey="galleryAlbums"
