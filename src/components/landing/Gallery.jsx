@@ -59,7 +59,7 @@ export default function Gallery() {
         image: img.thumbUrl || img.url, // ใช้รูปย่อในกริด ให้โหลดเร็ว ไม่กินเน็ตเกินจำเป็น
         fullImage: img.url, // รูปเต็มไว้ใช้ตอนเปิดดูขยาย (lightbox)
       }))
-    : content.galleryCategories;
+    : content.galleryAlbums;
   const headRef = useReveal();
   const [openIndex, setOpenIndex] = useState(null);
   const isScrollable = galleryCategories.length > GRID_LIMIT;
