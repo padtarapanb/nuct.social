@@ -23,7 +23,7 @@ const SECTIONS = [
   { key: "activities", label: "กิจกรรม", icon: Sparkles },
   { key: "upcomingEvents", label: "อีเวนต์ที่จะมาถึง", icon: CalendarDays },
   { key: "socials", label: "Connect With Us", icon: Share2 },
-  { key: "galleryCategories", label: "แกลเลอรี", icon: Images },
+  { key: "galleryAlbums", label: "Gallery Albums", icon: Images },
   { key: "team", label: "Team", icon: Users },
   { key: "testimonials", label: "เสียงจากสมาชิก", icon: Quote },
   { key: "faqs", label: "คำถามที่พบบ่อย", icon: HelpCircle },
