@@ -65,8 +65,8 @@ export async function fetchCloudinaryFolder({ folder, thumbTransform = "w_500,h_
 
   const auth = Buffer.from(`${CLOUDINARY_API_KEY}:${CLOUDINARY_API_SECRET}`).toString("base64");
   // ครอบคลุมทั้งรูปที่อยู่ตรงในโฟลเดอร์ และรูปในโฟลเดอร์ย่อย
-  const expression = `asset_folder="${folder}" OR asset_folder="${folder}/*"`;
-
+  const expression = `asset_folder="${folder}"`;
+  
   let resources = [];
   let cursor;
   let page = 0;
