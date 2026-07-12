@@ -139,13 +139,11 @@ export default function ListEditor({ tableKey, title, description, fields }) {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tableKey]);
-
-  const handleAdd = async () => {
+const handleAdd = async () => {
   setAdding(true);
   setError("");
 
   try {
-
     const row = { ...newRow };
 
     if (tableKey === "galleryAlbums") {
@@ -156,25 +154,38 @@ export default function ListEditor({ tableKey, title, description, fields }) {
     await createRow(tableKey, row);
 
     setNewRow(emptyValues(fields));
-
     await load();
-
   } catch (err) {
+    console.error(err);
+    setError("เพิ่มข้อมูลไม่สำเร็จ: " + err.message);
+  } finally {
+    setAdding(false);
+  }
+};
 
-  const handleSave = async (id) => {
-    setSavingId(id);
-    setError("");
-    try {
-      const { id: _id, sort_order, created_at, ...values } = drafts[id];
-      await updateRow(tableKey, id, values);
-      await load();
-    } catch (err) {
-      console.error(err);
-      setError("บันทึกไม่สำเร็จ: " + err.message);
-    } finally {
-      setSavingId(null);
+const handleSave = async (id) => {
+  setSavingId(id);
+  setError("");
+
+  try {
+    const values = { ...drafts[id] };
+
+    if (tableKey === "galleryAlbums") {
+      values.slug = slugify(values.title);
+      values.folder = `NUCT Gallery/${values.title}`;
     }
-  };
+
+    const { id: _id, sort_order, created_at, ...payload } = values;
+
+    await updateRow(tableKey, id, payload);
+    await load();
+  } catch (err) {
+    console.error(err);
+    setError("บันทึกไม่สำเร็จ: " + err.message);
+  } finally {
+    setSavingId(null);
+  }
+};
 
   const handleDelete = async (id) => {
     if (!window.confirm("ลบรายการนี้ใช่ไหม?")) return;
