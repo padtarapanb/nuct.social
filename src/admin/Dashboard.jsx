@@ -121,19 +121,49 @@ export default function Dashboard() {
             ]}
           />
         );
-      case "galleryCategories":
-        return (
-          <ListEditor
-            tableKey="galleryCategories"
-            title="แกลเลอรี"
-            description="ใส่ลิงก์รูปภาพ (URL) หรือลิงก์แชร์จาก Google Drive ก็ได้ (ตั้งค่าแชร์เป็น 'ทุกคนที่มีลิงก์' ก่อน) ถ้าเว้นว่างจะเป็นการ์ดสีไล่เฉดแทน"
-            fields={[
-              { name: "key", label: "รหัสหมวด (ภาษาอังกฤษ ไม่ซ้ำ)", placeholder: "camp" },
-              { name: "title", label: "ชื่อหมวด", placeholder: "Camp" },
-              { name: "image", label: "ลิงก์รูปภาพ", type: "image", placeholder: "https://...", wide: true },
-            ]}
-          />
-        );
+case "galleryCategories":
+  return (
+    <ListEditor
+      tableKey="galleryAlbums"
+      title="Gallery Albums"
+      description="จัดการอัลบั้มรูปภาพ โดยระบุโฟลเดอร์ใน Cloudinary เช่น NUCT Gallery/Baptism"
+
+      fields={[
+        {
+          name: "title",
+          label: "ชื่ออัลบั้ม",
+          placeholder: "Baptism",
+        },
+
+        {
+          name: "slug",
+          label: "Slug",
+          placeholder: "baptism",
+        },
+
+        {
+          name: "folder",
+          label: "Cloudinary Folder",
+          placeholder: "NUCT Gallery/Baptism",
+          wide: true,
+        },
+
+        {
+          name: "description",
+          label: "รายละเอียด",
+          type: "textarea",
+          wide: true,
+        },
+
+        {
+          name: "is_active",
+          label: "เปิดใช้งาน",
+          type: "checkbox",
+          default: true,
+        },
+      ]}
+    />
+  );
       case "team":
         return (
           <div>
