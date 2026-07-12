@@ -2,7 +2,7 @@ import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
   process.env.VITE_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
+  process.env.SUPABASE_ANON_KEY
 );
 
 export default async function handler(req, res) {
@@ -15,15 +15,10 @@ export default async function handler(req, res) {
 
     if (error) throw error;
 
-    res.setHeader(
-      "Cache-Control",
-      "s-maxage=60, stale-while-revalidate=300"
-    );
-
-    return res.status(200).json(data);
+    return res.status(200).json({
+      albums: data,
+    });
   } catch (err) {
-    console.error(err);
-
     return res.status(500).json({
       error: err.message,
     });
