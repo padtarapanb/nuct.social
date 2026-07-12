@@ -2,6 +2,7 @@ import { useState } from "react";
 import { X, Camera, ChevronLeft, ChevronRight } from "lucide-react";
 import { useContent } from "../../context/ContentContext";
 import { useReveal } from "../../hooks/useReveal";
+import { useCloudinaryGallery } from "../../hooks/useCloudinaryGallery";
 import { normalizeImageUrl, isDisplayableImageUrl } from "../../lib/imageUrl";
 
 const TILE_GRADIENTS = [
@@ -32,9 +33,11 @@ function Tile({ item, index, onOpen }) {
         </div>
       )}
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
-      <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
-        <p className="text-white font-semibold text-sm">{item.title}</p>
-      </div>
+      {item.title && (
+        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
+          <p className="text-white font-semibold text-sm">{item.title}</p>
+        </div>
+      )}
     </button>
   );
 }
@@ -45,7 +48,18 @@ const GRID_LIMIT = 6;
 
 export default function Gallery() {
   const { content } = useContent();
-  const galleryCategories = content.galleryCategories;
+  const { images: cloudinaryImages } = useCloudinaryGallery();
+
+  // ถ้ามีรูปจากโฟลเดอร์ Cloudinary ให้ใช้ชุดนั้นแทน (อัปรูปใหม่ปุ๊บ โชว์ปั๊บ ไม่ต้องเข้า /admin)
+  // ถ้ายังไม่ได้ตั้งค่า Cloudinary หรือโฟลเดอร์ยังว่าง ให้ใช้รูปที่แอดมินตั้งไว้ผ่าน Supabase ตามเดิม
+  const galleryCategories = cloudinaryImages.length
+    ? cloudinaryImages.map((img) => ({
+        id: img.id,
+        title: img.title,
+        image: img.thumbUrl || img.url, // ใช้รูปย่อในกริด ให้โหลดเร็ว ไม่กินเน็ตเกินจำเป็น
+        fullImage: img.url, // รูปเต็มไว้ใช้ตอนเปิดดูขยาย (lightbox)
+      }))
+    : content.galleryCategories;
   const headRef = useReveal();
   const [openIndex, setOpenIndex] = useState(null);
   const isScrollable = galleryCategories.length > GRID_LIMIT;
@@ -113,16 +127,22 @@ export default function Gallery() {
             style={{ background: TILE_GRADIENTS[openIndex % TILE_GRADIENTS.length] }}
             onClick={(e) => e.stopPropagation()}
           >
-            {isDisplayableImageUrl(active.image) ? (
-              <img src={normalizeImageUrl(active.image)} alt={active.title} className="absolute inset-0 w-full h-full object-cover" />
+            {isDisplayableImageUrl(active.fullImage || active.image) ? (
+              <img
+                src={normalizeImageUrl(active.fullImage || active.image)}
+                alt={active.title}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
             ) : (
               <div className="absolute inset-0 flex items-center justify-center opacity-30">
                 <Camera size={64} className="text-white" strokeWidth={1.2} />
               </div>
             )}
-            <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
-              <p className="text-white font-display text-xl font-bold">{active.title}</p>
-            </div>
+            {active.title && (
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/60 to-transparent">
+                <p className="text-white font-display text-xl font-bold">{active.title}</p>
+              </div>
+            )}
           </div>
 
           <button
