@@ -48,13 +48,32 @@ create table if not exists gallery_categories (
 
 create table if not exists gallery_albums (
   id uuid primary key default gen_random_uuid(),
-  name text default '',
-  slug text default '',
-  folder text default '',
+  title text not null default '',
+  slug text not null default '',
+  folder text not null default '',
+  description text default '',
+  cover_image text default '',
   images jsonb default '[]'::jsonb,
   sort_order int default 0,
-  created_at timestamptz default now()
+  is_active boolean default true,
+  created_at timestamptz default now(),
+  updated_at timestamptz default now()
 );
+
+create or replace function update_updated_at_column()
+returns trigger
+language plpgsql
+as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$;
+
+drop trigger if exists trg_gallery_album_updated on gallery_albums;
+create trigger trg_gallery_album_updated
+before update on gallery_albums
+for each row execute function update_updated_at_column();
 
 create table if not exists team_members (
   id uuid primary key default gen_random_uuid(),
