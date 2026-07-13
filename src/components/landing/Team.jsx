@@ -42,8 +42,8 @@ function TeamCard({ person, index }) {
 
 const TABS = [
   { key: "committee", label: "Committee" },
-  { key: "pr", label: "ประชาสัมพันธ์" },
-  { key: "shepherding", label: "โครงสร้างการอภิบาล" },
+  { key: "pr", label: "The PR Team" },
+  { key: "shepherding", label: "Leadership" },
 ];
 
 export default function Team() {
@@ -64,7 +64,7 @@ export default function Team() {
         <div ref={headRef} className="reveal max-w-xl mb-8 flex items-end justify-between gap-4 w-full flex-wrap">
           <div>
             <div className="badge mb-5">Team</div>
-            <h2 className="section-title">คณะกรรมการชมรม</h2>
+            <h2 className="section-title">NUCT Team</h2>
             <p className="section-subtitle">ทีมงานที่ตั้งใจดูแลทุกกิจกรรมและทุกคนในชมรม</p>
           </div>
         </div>
