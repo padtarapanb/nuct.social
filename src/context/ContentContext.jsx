@@ -39,6 +39,7 @@ const defaultContent = {
   shepherdingGroups: [],
   prTasks: [],
   networkPartners: [],
+  achievements: [],
   settings: defaultSettings,
 };
 
@@ -83,6 +84,7 @@ export function ContentProvider({ children }) {
   shepherdingGroups: data.shepherdingGroups || [],
   prTasks: data.prTasks || [],
   networkPartners: data.networkPartners || [],
+  achievements: (data.achievements || []).filter((a) => a.is_active !== false),
   settings: { ...defaultSettings, ...data.settings },
 };
       setContent(merged);
