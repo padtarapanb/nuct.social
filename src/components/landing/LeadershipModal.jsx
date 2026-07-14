@@ -74,7 +74,7 @@ export default function LeadershipModal({ open, onClose, team, shepherding: shep
         <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100 shrink-0">
           <div>
             <div className="badge mb-2">Leadership</div>
-            <h3 className="font-display text-xl font-bold text-gray-900">ทีมผู้นำของชมรม</h3>
+            <h3 className="font-display text-xl font-bold text-gray-900">Our team</h3>
           </div>
           <button
             onClick={onClose}
