@@ -45,7 +45,7 @@ export default function About() {
           >
             <p className="font-display text-2xl font-extrabold text-pine-800">{stats_number}</p>
             <p className="text-xs text-gray-500">{stats_label}</p>
-            <p className="text-[11px] text-pine-700 font-semibold mt-1">คลิกเพื่อดูทีมผู้นำ →</p>
+            <p className="text-[11px] text-pine-700 font-semibold mt-1">Click to view the NUCT Team →</p>
           </button>
         </div>
 
