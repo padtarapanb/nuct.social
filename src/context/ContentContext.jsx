@@ -38,6 +38,7 @@ const defaultContent = {
   historyImages: [],
   shepherdingGroups: [],
   prTasks: [],
+  networkPartners: [],
   settings: defaultSettings,
 };
 
@@ -81,6 +82,7 @@ export function ContentProvider({ children }) {
 
   shepherdingGroups: data.shepherdingGroups || [],
   prTasks: data.prTasks || [],
+  networkPartners: data.networkPartners || [],
   settings: { ...defaultSettings, ...data.settings },
 };
       setContent(merged);
