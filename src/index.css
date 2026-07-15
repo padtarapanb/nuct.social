@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================
+   Global tokens
+===================================== */
+
+:root{
+  --primary:#7C3AED;
+  --secondary:#A855F7;
+  --accent:#F59E0B;
+  --pink:#EC4899;
+
+  --bg:#FFFDFB;
+  --card:#FFFFFF;
+
+  --text:#1F2937;
+  --text-light:#6B7280;
+
+  --border:#F0E7FE;
+
+  --gradient-brand: linear-gradient(120deg, var(--primary) 0%, var(--pink) 55%, var(--accent) 100%);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Kanit','Poppins',sans-serif;
+  font-weight:400;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* แถบเลื่อนแนวนอนแบบ snap (การ์ดอีเวนต์, อัลบั้มแกลเลอรี) — เพิ่ม momentum scrolling
+   บน iOS และกัน "ลากแนวนอนแล้วหน้าเว็บค้าง" เวลาผู้ใช้ตั้งใจจะเลื่อนหน้าแนวตั้งต่อ */
+.snap-x{
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
+
+/* =====================================
+   Heading
+===================================== */
+
+h1,h2,h3,h4,h5{
+  font-family:'Poppins','Kanit',sans-serif;
+  font-weight:700;
+  color:#111827;
+  letter-spacing:-0.01em;
+}
+
+.font-display{
+  font-family:'Poppins','Kanit',sans-serif;
+}
+
+.font-th{
+  font-family:'Kanit','Poppins',sans-serif;
+}
+
+/* =====================================
+   Scrollbar
+===================================== */
+
+::-webkit-scrollbar{
+  width:8px;
+}
+
+::-webkit-scrollbar-track{
+  background:#F9F5FF;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#D8B4FE;
+  border-radius:50px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:var(--primary);
+}
+
+/* =====================================
+   Selection
+===================================== */
+
+::selection{
+  background:#EDE4FE;
+  color:var(--primary);
+}
+
+/* =====================================
+   Focus visibility (accessibility)
+===================================== */
+
+a:focus-visible,
+button:focus-visible{
+  outline:2px solid var(--primary);
+  outline-offset:3px;
+  border-radius:8px;
+}
+
+/* =====================================
+   Card
+===================================== */
+
+.card{
+  @apply bg-white rounded-3xl border border-line shadow-lg transition-all duration-500;
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 45px rgba(124,58,237,.14);
+}
+
+/* =====================================
+   Buttons
+===================================== */
+
+.btn-primary{
+  @apply rounded-full px-7 py-3.5 text-white font-semibold inline-flex items-center gap-2 justify-center;
+  background:var(--gradient-brand);
+  background-size:160% 160%;
+  transition:.35s;
+}
+
+.btn-primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 30px rgba(124,58,237,.32);
+  background-position:80% 20%;
+}
+
+.btn-secondary{
+  @apply rounded-full px-7 py-3.5 font-semibold border inline-flex items-center gap-2 justify-center transition-all duration-300;
+  border-color:#D8B4FE;
+  color:var(--primary);
+  background:rgba(255,255,255,.6);
+  backdrop-filter:blur(10px);
+}
+
+.btn-secondary:hover{
+  background:#F5F3FF;
+  transform:translateY(-3px);
+}
+
+/* =====================================
+   Badge / eyebrow
+===================================== */
+
+.badge{
+  @apply rounded-full px-4 py-1.5 text-sm font-semibold inline-flex items-center gap-1.5;
+  background:#F3E8FF;
+  color:var(--primary);
+}
+
+/* =====================================
+   Section rhythm
+===================================== */
+
+.section{
+  padding:88px 0;
+  position:relative;
+}
+
+@media (max-width: 640px){
+  .section{
+    padding:64px 0;
+  }
+}
+
+.section-title{
+  font-size:clamp(1.9rem, 3.2vw, 2.75rem);
+  font-weight:700;
+  margin-bottom:16px;
+  line-height:1.15;
+}
+
+.section-subtitle{
+  color:var(--text-light);
+  max-width:640px;
+  line-height:1.8;
+}
+
+/* ข้อความจากหลังบ้านที่ใส่ <strong> จะเน้นด้วยสีธีมเว็บอัตโนมัติ ไม่ต้องใส่ style เอง */
+.section-subtitle strong,
+.rich-text strong{
+  color:#6D28D9;
+  font-weight:700;
+}
+
+/* =====================================
+   Glass Effect
+===================================== */
+
+.glass{
+  background:rgba(255,255,255,.65);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.5);
+}
+
+/* =====================================
+   Gradient Text
+===================================== */
+
+.gradient-text{
+  background:var(--gradient-brand);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+/* =====================================
+   Horizon divider (signature motif:
+   a soft glowing line, echoing sunrise
+   light breaking over the hero skyline)
+===================================== */
+
+.horizon-divider{
+  height:1px;
+  width:100%;
+  background:linear-gradient(90deg, transparent, rgba(124,58,237,.35), rgba(245,158,11,.35), transparent);
+}
+
+/* =====================================
+   Scroll reveal
+===================================== */
+
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  filter:blur(6px);
+  transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1), filter .8s ease;
+}
+
+.reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+  filter:blur(0);
+}
+
+.reveal-delay-1{ transition-delay:.08s; }
+.reveal-delay-2{ transition-delay:.16s; }
+.reveal-delay-3{ transition-delay:.24s; }
+.reveal-delay-4{ transition-delay:.32s; }
+.reveal-delay-5{ transition-delay:.4s; }
+
+@media (prefers-reduced-motion: reduce){
+  .reveal{
+    opacity:1;
+    transform:none;
+    filter:none;
+  }
+}
+
+/* =====================================
+   Floating ambient blobs
+===================================== */
+
+.blob{
+  position:absolute;
+  border-radius:9999px;
+  filter:blur(60px);
+  opacity:.55;
+  pointer-events:none;
+}
+
+/* =====================================
+   Fade up (legacy, kept for compatibility)
+===================================== */
+
+.fade-up{
+  animation:fadeUp .7s ease;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(25px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
