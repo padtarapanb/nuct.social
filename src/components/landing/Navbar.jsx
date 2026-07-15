@@ -102,7 +102,7 @@ export default function Navbar() {
               className="px-4 py-2 rounded-full text-[14px] font-medium text-gray-600 hover:text-pine-800 hover:bg-pine-50 transition-colors flex items-center gap-1"
               aria-expanded={moreOpen}
             >
-              เพิ่มเติม
+              More
               <ChevronDown size={14} className={`transition-transform ${moreOpen ? "rotate-180" : ""}`} />
             </button>
             {moreOpen && (
